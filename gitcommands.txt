@@ -153,7 +153,7 @@ short name origin. master means master branch.
 -u combined with origin master sets the default remote repository
 and branch to origin and master resp for current branch. Next time 
 when we want to push some commits, we just have to use git push.
-
+-u sets the upstream to origin master.
 
 25> Reset repository to a revision
 
@@ -185,8 +185,85 @@ remote repository.
 26> Use git diff to see what code changes between current state of the files
 and the state of the files in the previous commit.
 
+git diff filename
+
+27> Check difference in file states between 2 commits
+git diff hash1 hash2
+
+hash1 and hash2 is starting few characters of commit hash.
+
+hash1 should be newer than hash2
 
 
+28> Set state of the file to state of file in HEAD commit
+git checkout add.js
+
+Note: add.js must be in working area for this command to work.
+
+If branch has a name add.js or with similar name of the file then use
+git checkout -- add.js, This will prevent going in different
+branch.
+
+You can use git checkout -- . which will checkout all the modified files.
+
+29> Get rid of all the modifications made to tracked files, when files are 
+in working area or staging area, use the command below. With the below command
+it will remove all commits after HEAD and remove all local changes. Since 
+there are no commits after HEAD it will end up removing all local changes.
+
+git reset --hard HEAD 
+or
+git reset --hard
+
+Note: We can also use git stash
+
+30> To remove untracked files or folder in the repository
+
+git clean -f -d
+
+-d stands for includes directories as well.
+-f stands for forced operation
+
+https://git-scm.com/docs/git-clean. - other clean options
+
+31> Branch
+
+Git history is a series of commits linked together forming a chain. 
+A branch is a chain with a name. When we add new commit it gets pushed to the top
+of the chain. The top commit is called HEAD.
+
+HEAD is a pointer to the last commit in a currently checked out branch.
+Branch will remember last commit ans then that commit is linked to another commit.
+branch = (commit, branch name)
+
+When we initialize a repository, master is the default branch without any commits.
+Once we make a commit that commit becomes a HEAD. Once we add more 
+commits HEAD will point to whatever is at the top of the chain and 
+branch has to remember only last commit. So branch is a tuple of
+branch name and HEAD commit.
+
+Whenever we create a new branch, the commit of new branch is taken from
+the last commit of another branch. If we are inside master branch and
+created a new branch, Git will pick up last from master branch. Once we switch 
+the branch, HEAD will point to last commit of current branch.
+
+ 
+31> List all branches
+
+git branch
+
+Will list all the branches. The one with asterisk is the current branch.
+
+32> Create a new branch
+git branch dev 
+
+It will create dev branch, but we are still in master branch. To go in dev
+branch we have to use checkout command.
+
+git checkout dev
+
+Above two commands can be executed using single command
+git checkout -b dev
 
 
 
