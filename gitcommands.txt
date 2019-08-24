@@ -264,6 +264,51 @@ git checkout dev
 
 Above two commands can be executed using single command
 git checkout -b dev
+It will create and switch to the new branch.
+
+33> Add and commit file in a single command.
+
+git commit -am "Added and committed all modified files"
+
+It will add and commit all the modified files but not newly created files.
+
+On checking history of dev branch we will see a new commit at the top which
+will be the HEAD.
+
+34> To check all local and remote branches use, 
+git branch -a
+On using git branch -a It will list all remote branches
+
+35> To fetch all remote repository
+git fetch
+To update remote tracking branches.
+
+36> Set upstream for local master branch use
+git push -u origin dev
+
+If a branch doesnot exist on remote repository it will be created.
+If a remote branch already exists with a different name than you want to track
+with the current branch, then use command
+git branch --set-upstream-to origin/dev_new and then use git push
+
+git push -u origin dev
+Above command will create dev branch on remote repository and local branch 
+will track it. 
+
+37> Merging one branch with other
+Suppose you want to merge changes from dev branch to master branch we have to 
+checkout master branch. 
+
+git checkout master
+
+When on master branch always do git pull to take the lastest development happened
+on master branch while doing development on dev branch.
+
+git pull
+
+37> 
+
+
 
 
 
