@@ -47,6 +47,8 @@ remote repository name. This will initialize .git directory inside it and set
 origin to repo-url. It will also pull code from remote repository into the 
 local repository.
 
+
+
 12> Check if local repository is tracking the remote repository using 
 git remote -v command 
 
@@ -119,6 +121,75 @@ got log --stat
 23> To change message of previous commit 
 git commend --amend -m "Initial Commit"
 It will also change hash of the commit
+
+If there is a new file or a changed file we can either create a new 
+commit or add these files to old commit.
+To add changes in the old commit 
+
+- check newly modified files using git status
+- stage a new file using the command git add -A
+- git commit --amend
+
+We can avoid edit message dialog using the command
+git commit --amend --no-edit
+
+To escape from vim we use ESC + :wq
+
+Every time we tamper with the content of a commit, the hash
+of the commit that was altered will change.
+
+
+24> To push the local changes to the remote repository
+for the first time use the command
+
+git push -u origin master
+
+With the help of above command we have successfully pushed
+all pending changes from local repository to remote repository.
+
+origin means push commits to remote repository URL with 
+short name origin. master means master branch. 
+
+-u combined with origin master sets the default remote repository
+and branch to origin and master resp for current branch. Next time 
+when we want to push some commits, we just have to use git push.
+
+
+25> Reset repository to a revision
+
+May be possible that you made a commit which you didnt want to make, so HEAD
+is pointing to the last commit in git history.
+
+To undo the commits and point to previous version in a repository
+
+git reset --soft c953c62 - will remove all commits after commit c953c62 and
+will bring all changed code in staging area.
+All commits after this commit are removed from git repository.
+
+git reset --mixed c953c62 - will remove all commits after commit c953c62 and
+will bring all changed code to the working area. This command is same as 
+git reset c953c62
+
+git reset --hard c953c62 - Will remove all commits after commit c953c62 and
+destroy all changed code after that. This will also remove all changed 
+file in working or staging area. Hence git reset --hard HEAD is also used 
+to get rid of all changes in the workking area or staging area.
+
+Note: All untracked files(newly created files) will not be removed.
+
+This command resets the Git hostory which can be dangerous.
+Hence, make sure that you are altering commits that are not yet pushed to 
+remote repository.
+
+
+26> Use git diff to see what code changes between current state of the files
+and the state of the files in the previous commit.
+
+
+
+
+
+
 
 
 
